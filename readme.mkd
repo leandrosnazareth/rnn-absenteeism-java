@@ -1,0 +1,28 @@
+Configuração	Descrição
+spring.datasource.url	URL do banco de dados MySQL
+spring.datasource.username	Usuário do banco de dados
+spring.datasource.password	Senha do banco de dados
+spring.jpa.hibernate.ddl-auto	update cria e atualiza tabelas automaticamente
+spring.jpa.show-sql	Exibe as queries SQL executadas
+server.port	Define a porta da API (padrão 8080)
+rnn.epochs	Número de épocas de treinamento da rede neural
+rnn.learningRate	Taxa de aprendizado do modelo RNN
+rnn.hiddenLayerSize	Número de neurônios na camada oculta da LSTM
+spring.jackson.date-format	Define o formato de datas no JSON
+spring.jackson.time-zone	Configura a zona de tempo para o Brasil
+logging.level.com.example.rnn	Define o nível de logs para DEBUG no nosso código
+
+
+ Como Usar?
+
+1️⃣ Criar o Banco de Dados no MySQL:
+
+CREATE DATABASE absenteeism_db;
+
+2️⃣ Executar a aplicação Spring Boot
+
+mvn spring-boot:run
+
+3️⃣ Testar a API para prever absenteísmo:
+
+curl -X GET "http://localhost:8080/api/absenteeism/predictToday"
