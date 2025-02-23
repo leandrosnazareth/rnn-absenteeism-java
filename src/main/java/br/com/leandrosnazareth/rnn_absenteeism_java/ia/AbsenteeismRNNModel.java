@@ -1,7 +1,5 @@
 package br.com.leandrosnazareth.rnn_absenteeism_java.ia;
 
-import java.util.Collections;
-
 import org.deeplearning4j.nn.api.OptimizationAlgorithm;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
@@ -15,7 +13,10 @@ import org.nd4j.linalg.dataset.DataSet;
 import org.nd4j.linalg.dataset.api.preprocessor.NormalizerMinMaxScaler;
 import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
+import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+@Component
 public class AbsenteeismRNNModel {
 
     private final MultiLayerConfiguration conf;
@@ -48,14 +49,12 @@ public class AbsenteeismRNNModel {
         normalizer = new NormalizerMinMaxScaler(0, 1);
     }
 
-    public void train(INDArray features, INDArray labels) {
-        DataSet dataset = new DataSet(features, labels);
-        
-        // Normalização correta
+    public void train(DataSet dataset) {
+        // Normalizar os dados antes de treinar
         normalizer.fit(dataset);
         normalizer.transform(dataset);
 
-        // Treina o modelo
+        // Treinar a rede neural
         model.fit(dataset);
     }
 
